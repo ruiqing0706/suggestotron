@@ -63,7 +63,10 @@ class TopicsController < ApplicationController
 
   def devote
     @topic = Topic.find(params[:id])
-    @topic.votes.first.destroy
+    if @topic.votes.length == 0
+    else
+      @topic.votes.first.destroy
+    end
     redirect_to(topics_path)
   end
 
